@@ -17,6 +17,7 @@ import { Route as LogoutRouteImport } from './routes/logout'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppApparatusRouteImport } from './routes/app.apparatus'
+import { Route as AppChemicalsRouteImport } from './routes/app.chemicals'
 import { Route as AppLaboratoryRouteImport } from './routes/app.laboratory'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
 import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
@@ -61,6 +62,11 @@ const AppApparatusRoute = AppApparatusRouteImport.update({
   path: '/apparatus',
   getParentRoute: () => AppRoute,
 } as any)
+const AppChemicalsRoute = AppChemicalsRouteImport.update({
+  id: '/chemicals',
+  path: '/chemicals',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppLaboratoryRoute = AppLaboratoryRouteImport.update({
   id: '/laboratory',
   path: '/laboratory',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
   '/app/apparatus': typeof AppApparatusRoute
+  '/app/chemicals': typeof AppChemicalsRoute
   '/app/laboratory': typeof AppLaboratoryRoute
   '/app/': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
   '/app/apparatus': typeof AppApparatusRoute
+  '/app/chemicals': typeof AppChemicalsRoute
   '/app/laboratory': typeof AppLaboratoryRoute
   '/app': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
   '/app/apparatus': typeof AppApparatusRoute
+  '/app/chemicals': typeof AppChemicalsRoute
   '/app/laboratory': typeof AppLaboratoryRoute
   '/app/': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/logout'
     | '/register'
     | '/app/apparatus'
+    | '/app/chemicals'
     | '/app/laboratory'
     | '/app/'
     | '/app/experiments/$id'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/logout'
     | '/register'
     | '/app/apparatus'
+    | '/app/chemicals'
     | '/app/laboratory'
     | '/app'
     | '/app/experiments/$id'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/logout'
     | '/register'
     | '/app/apparatus'
+    | '/app/chemicals'
     | '/app/laboratory'
     | '/app/'
     | '/app/experiments/$id'
@@ -224,6 +236,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppApparatusRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/chemicals': {
+      id: '/app/chemicals'
+      path: '/chemicals'
+      fullPath: '/app/chemicals'
+      preLoaderRoute: typeof AppChemicalsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/laboratory': {
       id: '/app/laboratory'
       path: '/laboratory'
@@ -250,6 +269,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppApparatusRoute: typeof AppApparatusRoute
+  AppChemicalsRoute: typeof AppChemicalsRoute
   AppLaboratoryRoute: typeof AppLaboratoryRoute
   AppIndexRoute: typeof AppIndexRoute
   AppExperimentsIdRoute: typeof AppExperimentsIdRoute
@@ -258,6 +278,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppApparatusRoute: AppApparatusRoute,
+  AppChemicalsRoute: AppChemicalsRoute,
   AppLaboratoryRoute: AppLaboratoryRoute,
   AppIndexRoute: AppIndexRoute,
   AppExperimentsIdRoute: AppExperimentsIdRoute,
