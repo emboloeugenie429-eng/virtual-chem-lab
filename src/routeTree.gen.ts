@@ -17,6 +17,7 @@ import { Route as LogoutRouteImport } from './routes/logout'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
+import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const AppExperimentsIndexRoute = AppExperimentsIndexRouteImport.update({
   path: '/experiments/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppExperimentsIdRoute = AppExperimentsIdRouteImport.update({
+  id: '/experiments/$id',
+  path: '/experiments/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
   '/app/': typeof AppIndexRoute
+  '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
   '/app': typeof AppIndexRoute
+  '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments': typeof AppExperimentsIndexRoute
 }
 export interface FileRoutesById {
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
   '/app/': typeof AppIndexRoute
+  '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
 }
 export interface FileRouteTypes {
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/logout'
     | '/register'
     | '/app/'
+    | '/app/experiments/$id'
     | '/app/experiments/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/logout'
     | '/register'
     | '/app'
+    | '/app/experiments/$id'
     | '/app/experiments'
   id:
     | '__root__'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/logout'
     | '/register'
     | '/app/'
+    | '/app/experiments/$id'
     | '/app/experiments/'
   fileRoutesById: FileRoutesById
 }
@@ -188,16 +200,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppExperimentsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/experiments/$id': {
+      id: '/app/experiments/$id'
+      path: '/experiments/$id'
+      fullPath: '/app/experiments/$id'
+      preLoaderRoute: typeof AppExperimentsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppExperimentsIdRoute: typeof AppExperimentsIdRoute
   AppExperimentsIndexRoute: typeof AppExperimentsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppExperimentsIdRoute: AppExperimentsIdRoute,
   AppExperimentsIndexRoute: AppExperimentsIndexRoute,
 }
 
