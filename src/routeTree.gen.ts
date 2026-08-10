@@ -18,8 +18,16 @@ import { Route as RegisterRouteImport } from './routes/register'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppApparatusRouteImport } from './routes/app.apparatus'
 import { Route as AppChemicalsRouteImport } from './routes/app.chemicals'
+import { Route as AppHistoryRouteImport } from './routes/app.history'
 import { Route as AppLaboratoryRouteImport } from './routes/app.laboratory'
+import { Route as AppNotebookRouteImport } from './routes/app.notebook'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppProgressRouteImport } from './routes/app.progress'
+import { Route as AppQuizRouteImport } from './routes/app.quiz'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppResultsRouteImport } from './routes/app.results'
 import { Route as AppSafetyRouteImport } from './routes/app.safety'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
 import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
 
@@ -68,14 +76,54 @@ const AppChemicalsRoute = AppChemicalsRouteImport.update({
   path: '/chemicals',
   getParentRoute: () => AppRoute,
 } as any)
+const AppHistoryRoute = AppHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppLaboratoryRoute = AppLaboratoryRouteImport.update({
   id: '/laboratory',
   path: '/laboratory',
   getParentRoute: () => AppRoute,
 } as any)
+const AppNotebookRoute = AppNotebookRouteImport.update({
+  id: '/notebook',
+  path: '/notebook',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProgressRoute = AppProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppQuizRoute = AppQuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResultsRoute = AppResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppSafetyRoute = AppSafetyRouteImport.update({
   id: '/safety',
   path: '/safety',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
 const AppExperimentsIndexRoute = AppExperimentsIndexRouteImport.update({
@@ -98,8 +146,16 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
+  '/app/history': typeof AppHistoryRoute
   '/app/laboratory': typeof AppLaboratoryRoute
+  '/app/notebook': typeof AppNotebookRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/progress': typeof AppProgressRoute
+  '/app/quiz': typeof AppQuizRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/results': typeof AppResultsRoute
   '/app/safety': typeof AppSafetyRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
@@ -112,8 +168,16 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
+  '/app/history': typeof AppHistoryRoute
   '/app/laboratory': typeof AppLaboratoryRoute
+  '/app/notebook': typeof AppNotebookRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/progress': typeof AppProgressRoute
+  '/app/quiz': typeof AppQuizRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/results': typeof AppResultsRoute
   '/app/safety': typeof AppSafetyRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments': typeof AppExperimentsIndexRoute
@@ -128,8 +192,16 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
+  '/app/history': typeof AppHistoryRoute
   '/app/laboratory': typeof AppLaboratoryRoute
+  '/app/notebook': typeof AppNotebookRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/progress': typeof AppProgressRoute
+  '/app/quiz': typeof AppQuizRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/results': typeof AppResultsRoute
   '/app/safety': typeof AppSafetyRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
@@ -145,8 +217,16 @@ export interface FileRouteTypes {
     | '/register'
     | '/app/apparatus'
     | '/app/chemicals'
+    | '/app/history'
     | '/app/laboratory'
+    | '/app/notebook'
+    | '/app/profile'
+    | '/app/progress'
+    | '/app/quiz'
+    | '/app/reports'
+    | '/app/results'
     | '/app/safety'
+    | '/app/settings'
     | '/app/'
     | '/app/experiments/$id'
     | '/app/experiments/'
@@ -159,8 +239,16 @@ export interface FileRouteTypes {
     | '/register'
     | '/app/apparatus'
     | '/app/chemicals'
+    | '/app/history'
     | '/app/laboratory'
+    | '/app/notebook'
+    | '/app/profile'
+    | '/app/progress'
+    | '/app/quiz'
+    | '/app/reports'
+    | '/app/results'
     | '/app/safety'
+    | '/app/settings'
     | '/app'
     | '/app/experiments/$id'
     | '/app/experiments'
@@ -174,8 +262,16 @@ export interface FileRouteTypes {
     | '/register'
     | '/app/apparatus'
     | '/app/chemicals'
+    | '/app/history'
     | '/app/laboratory'
+    | '/app/notebook'
+    | '/app/profile'
+    | '/app/progress'
+    | '/app/quiz'
+    | '/app/reports'
+    | '/app/results'
     | '/app/safety'
+    | '/app/settings'
     | '/app/'
     | '/app/experiments/$id'
     | '/app/experiments/'
@@ -255,6 +351,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppChemicalsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/history': {
+      id: '/app/history'
+      path: '/history'
+      fullPath: '/app/history'
+      preLoaderRoute: typeof AppHistoryRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/laboratory': {
       id: '/app/laboratory'
       path: '/laboratory'
@@ -262,11 +365,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLaboratoryRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/notebook': {
+      id: '/app/notebook'
+      path: '/notebook'
+      fullPath: '/app/notebook'
+      preLoaderRoute: typeof AppNotebookRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/progress': {
+      id: '/app/progress'
+      path: '/progress'
+      fullPath: '/app/progress'
+      preLoaderRoute: typeof AppProgressRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/quiz': {
+      id: '/app/quiz'
+      path: '/quiz'
+      fullPath: '/app/quiz'
+      preLoaderRoute: typeof AppQuizRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/results': {
+      id: '/app/results'
+      path: '/results'
+      fullPath: '/app/results'
+      preLoaderRoute: typeof AppResultsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/safety': {
       id: '/app/safety'
       path: '/safety'
       fullPath: '/app/safety'
       preLoaderRoute: typeof AppSafetyRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/experiments/': {
@@ -289,8 +441,16 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppApparatusRoute: typeof AppApparatusRoute
   AppChemicalsRoute: typeof AppChemicalsRoute
+  AppHistoryRoute: typeof AppHistoryRoute
   AppLaboratoryRoute: typeof AppLaboratoryRoute
+  AppNotebookRoute: typeof AppNotebookRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppProgressRoute: typeof AppProgressRoute
+  AppQuizRoute: typeof AppQuizRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppResultsRoute: typeof AppResultsRoute
   AppSafetyRoute: typeof AppSafetyRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
   AppExperimentsIdRoute: typeof AppExperimentsIdRoute
   AppExperimentsIndexRoute: typeof AppExperimentsIndexRoute
@@ -299,8 +459,16 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppApparatusRoute: AppApparatusRoute,
   AppChemicalsRoute: AppChemicalsRoute,
+  AppHistoryRoute: AppHistoryRoute,
   AppLaboratoryRoute: AppLaboratoryRoute,
+  AppNotebookRoute: AppNotebookRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppProgressRoute: AppProgressRoute,
+  AppQuizRoute: AppQuizRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppResultsRoute: AppResultsRoute,
   AppSafetyRoute: AppSafetyRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
   AppExperimentsIdRoute: AppExperimentsIdRoute,
   AppExperimentsIndexRoute: AppExperimentsIndexRoute,
