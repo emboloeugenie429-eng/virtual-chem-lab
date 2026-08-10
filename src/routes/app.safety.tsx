@@ -15,7 +15,7 @@ export const Route = createFileRoute("/app/safety")({
   component: Safety,
 });
 
-const sections = [
+const sections: [string, string][] = [
   ["Hazard Classification", "Skin corrosion category 1B. Causes severe skin burns and eye damage."],
   ["Physical Properties", "Colourless liquid · pH ≈ 1.1 (0.1 M) · Boiling point 110 °C · Density 1.02 g/cm³."],
   ["Handling", "Use in a ventilated area. Always add acid to water, never water to acid."],

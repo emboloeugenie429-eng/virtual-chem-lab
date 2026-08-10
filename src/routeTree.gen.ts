@@ -19,6 +19,7 @@ import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppApparatusRouteImport } from './routes/app.apparatus'
 import { Route as AppChemicalsRouteImport } from './routes/app.chemicals'
 import { Route as AppLaboratoryRouteImport } from './routes/app.laboratory'
+import { Route as AppSafetyRouteImport } from './routes/app.safety'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
 import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
 
@@ -72,6 +73,11 @@ const AppLaboratoryRoute = AppLaboratoryRouteImport.update({
   path: '/laboratory',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSafetyRoute = AppSafetyRouteImport.update({
+  id: '/safety',
+  path: '/safety',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppExperimentsIndexRoute = AppExperimentsIndexRouteImport.update({
   id: '/experiments/',
   path: '/experiments/',
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/laboratory': typeof AppLaboratoryRoute
+  '/app/safety': typeof AppSafetyRoute
   '/app/': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/laboratory': typeof AppLaboratoryRoute
+  '/app/safety': typeof AppSafetyRoute
   '/app': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments': typeof AppExperimentsIndexRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/laboratory': typeof AppLaboratoryRoute
+  '/app/safety': typeof AppSafetyRoute
   '/app/': typeof AppIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/laboratory'
+    | '/app/safety'
     | '/app/'
     | '/app/experiments/$id'
     | '/app/experiments/'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/laboratory'
+    | '/app/safety'
     | '/app'
     | '/app/experiments/$id'
     | '/app/experiments'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/laboratory'
+    | '/app/safety'
     | '/app/'
     | '/app/experiments/$id'
     | '/app/experiments/'
@@ -250,6 +262,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLaboratoryRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/safety': {
+      id: '/app/safety'
+      path: '/safety'
+      fullPath: '/app/safety'
+      preLoaderRoute: typeof AppSafetyRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/experiments/': {
       id: '/app/experiments/'
       path: '/experiments'
@@ -271,6 +290,7 @@ interface AppRouteChildren {
   AppApparatusRoute: typeof AppApparatusRoute
   AppChemicalsRoute: typeof AppChemicalsRoute
   AppLaboratoryRoute: typeof AppLaboratoryRoute
+  AppSafetyRoute: typeof AppSafetyRoute
   AppIndexRoute: typeof AppIndexRoute
   AppExperimentsIdRoute: typeof AppExperimentsIdRoute
   AppExperimentsIndexRoute: typeof AppExperimentsIndexRoute
@@ -280,6 +300,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppApparatusRoute: AppApparatusRoute,
   AppChemicalsRoute: AppChemicalsRoute,
   AppLaboratoryRoute: AppLaboratoryRoute,
+  AppSafetyRoute: AppSafetyRoute,
   AppIndexRoute: AppIndexRoute,
   AppExperimentsIdRoute: AppExperimentsIdRoute,
   AppExperimentsIndexRoute: AppExperimentsIndexRoute,
