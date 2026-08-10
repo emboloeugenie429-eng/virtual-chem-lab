@@ -44,6 +44,7 @@ function Splash() {
       const t = setTimeout(() => router.navigate({ to: "/login" }), 500);
       return () => clearTimeout(t);
     }
+    return undefined;
   }, [progress, router]);
 
   const step = steps[Math.min(steps.length - 1, Math.floor(progress / 26))];
