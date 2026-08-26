@@ -33,7 +33,7 @@ function TeacherExperiments() {
 
       <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
         {experiments.map((e) => (
-          <Panel key={e.id} title={e.title} icon={FlaskConical}>
+          <Panel key={e.id} title={e.name} icon={FlaskConical}>
             <p className="text-xs leading-relaxed text-muted-foreground">{e.description}</p>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <Chip tone="accent">{e.difficulty}</Chip>

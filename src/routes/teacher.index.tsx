@@ -105,7 +105,7 @@ function TeacherDashboard() {
                 className="rounded-lg border border-border bg-surface-2 px-3 py-2.5"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-[13px] font-medium">{e.title}</span>
+                  <span className="text-[13px] font-medium">{e.name}</span>
                   <Chip tone="accent">{e.difficulty}</Chip>
                 </div>
                 <div className="mt-2">
