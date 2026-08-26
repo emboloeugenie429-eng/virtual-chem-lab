@@ -15,6 +15,7 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LogoutRouteImport } from './routes/logout'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppApparatusRouteImport } from './routes/app.apparatus'
 import { Route as AppChemicalsRouteImport } from './routes/app.chemicals'
@@ -59,6 +60,11 @@ const LogoutRoute = LogoutRouteImport.update({
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeacherRoute = TeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
+  '/teacher': typeof TeacherRoute
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/history': typeof AppHistoryRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
+  '/teacher': typeof TeacherRoute
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/history': typeof AppHistoryRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
+  '/teacher': typeof TeacherRoute
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/history': typeof AppHistoryRoute
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/logout'
     | '/register'
+    | '/teacher'
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/history'
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/logout'
     | '/register'
+    | '/teacher'
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/history'
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/logout'
     | '/register'
+    | '/teacher'
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/history'
@@ -284,6 +296,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   LogoutRoute: typeof LogoutRoute
   RegisterRoute: typeof RegisterRoute
+  TeacherRoute: typeof TeacherRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -328,6 +341,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teacher': {
+      id: '/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof TeacherRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/': {
@@ -483,6 +503,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   LogoutRoute: LogoutRoute,
   RegisterRoute: RegisterRoute,
+  TeacherRoute: TeacherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
