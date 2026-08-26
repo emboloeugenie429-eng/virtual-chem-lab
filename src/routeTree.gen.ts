@@ -31,6 +31,7 @@ import { Route as AppSafetyRouteImport } from './routes/app.safety'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as TeacherExperimentsRouteImport } from './routes/teacher.experiments'
+import { Route as TeacherQuestionsRouteImport } from './routes/teacher.questions'
 import { Route as TeacherStudentsRouteImport } from './routes/teacher.students'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
 import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
@@ -145,6 +146,11 @@ const TeacherExperimentsRoute = TeacherExperimentsRouteImport.update({
   path: '/experiments',
   getParentRoute: () => TeacherRoute,
 } as any)
+const TeacherQuestionsRoute = TeacherQuestionsRouteImport.update({
+  id: '/questions',
+  path: '/questions',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const TeacherStudentsRoute = TeacherStudentsRouteImport.update({
   id: '/students',
   path: '/students',
@@ -182,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
+  '/teacher/questions': typeof TeacherQuestionsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
   '/teacher/': typeof TeacherIndexRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByTo {
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
+  '/teacher/questions': typeof TeacherQuestionsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app': typeof AppIndexRoute
   '/teacher': typeof TeacherIndexRoute
@@ -235,6 +243,7 @@ export interface FileRoutesById {
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
+  '/teacher/questions': typeof TeacherQuestionsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
   '/teacher/': typeof TeacherIndexRoute
@@ -264,6 +273,7 @@ export interface FileRouteTypes {
     | '/app/safety'
     | '/app/settings'
     | '/teacher/experiments'
+    | '/teacher/questions'
     | '/teacher/students'
     | '/app/'
     | '/teacher/'
@@ -289,6 +299,7 @@ export interface FileRouteTypes {
     | '/app/safety'
     | '/app/settings'
     | '/teacher/experiments'
+    | '/teacher/questions'
     | '/teacher/students'
     | '/app'
     | '/teacher'
@@ -316,6 +327,7 @@ export interface FileRouteTypes {
     | '/app/safety'
     | '/app/settings'
     | '/teacher/experiments'
+    | '/teacher/questions'
     | '/teacher/students'
     | '/app/'
     | '/teacher/'
@@ -489,6 +501,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeacherExperimentsRouteImport
       parentRoute: typeof TeacherRoute
     }
+    '/teacher/questions': {
+      id: '/teacher/questions'
+      path: '/questions'
+      fullPath: '/teacher/questions'
+      preLoaderRoute: typeof TeacherQuestionsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/teacher/students': {
       id: '/teacher/students'
       path: '/students'
@@ -553,12 +572,14 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface TeacherRouteChildren {
   TeacherExperimentsRoute: typeof TeacherExperimentsRoute
+  TeacherQuestionsRoute: typeof TeacherQuestionsRoute
   TeacherStudentsRoute: typeof TeacherStudentsRoute
   TeacherIndexRoute: typeof TeacherIndexRoute
 }
 
 const TeacherRouteChildren: TeacherRouteChildren = {
   TeacherExperimentsRoute: TeacherExperimentsRoute,
+  TeacherQuestionsRoute: TeacherQuestionsRoute,
   TeacherStudentsRoute: TeacherStudentsRoute,
   TeacherIndexRoute: TeacherIndexRoute,
 }
