@@ -32,6 +32,7 @@ import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as TeacherExperimentsRouteImport } from './routes/teacher.experiments'
 import { Route as TeacherQuestionsRouteImport } from './routes/teacher.questions'
+import { Route as TeacherReportsRouteImport } from './routes/teacher.reports'
 import { Route as TeacherResultsRouteImport } from './routes/teacher.results'
 import { Route as TeacherStudentsRouteImport } from './routes/teacher.students'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
@@ -152,6 +153,11 @@ const TeacherQuestionsRoute = TeacherQuestionsRouteImport.update({
   path: '/questions',
   getParentRoute: () => TeacherRoute,
 } as any)
+const TeacherReportsRoute = TeacherReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const TeacherResultsRoute = TeacherResultsRouteImport.update({
   id: '/results',
   path: '/results',
@@ -195,6 +201,7 @@ export interface FileRoutesByFullPath {
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
   '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/reports': typeof TeacherReportsRoute
   '/teacher/results': typeof TeacherResultsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
@@ -222,6 +229,7 @@ export interface FileRoutesByTo {
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
   '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/reports': typeof TeacherReportsRoute
   '/teacher/results': typeof TeacherResultsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app': typeof AppIndexRoute
@@ -252,6 +260,7 @@ export interface FileRoutesById {
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
   '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/reports': typeof TeacherReportsRoute
   '/teacher/results': typeof TeacherResultsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
@@ -283,6 +292,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/teacher/experiments'
     | '/teacher/questions'
+    | '/teacher/reports'
     | '/teacher/results'
     | '/teacher/students'
     | '/app/'
@@ -310,6 +320,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/teacher/experiments'
     | '/teacher/questions'
+    | '/teacher/reports'
     | '/teacher/results'
     | '/teacher/students'
     | '/app'
@@ -339,6 +350,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/teacher/experiments'
     | '/teacher/questions'
+    | '/teacher/reports'
     | '/teacher/results'
     | '/teacher/students'
     | '/app/'
@@ -520,6 +532,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeacherQuestionsRouteImport
       parentRoute: typeof TeacherRoute
     }
+    '/teacher/reports': {
+      id: '/teacher/reports'
+      path: '/reports'
+      fullPath: '/teacher/reports'
+      preLoaderRoute: typeof TeacherReportsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/teacher/results': {
       id: '/teacher/results'
       path: '/results'
@@ -592,6 +611,7 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 interface TeacherRouteChildren {
   TeacherExperimentsRoute: typeof TeacherExperimentsRoute
   TeacherQuestionsRoute: typeof TeacherQuestionsRoute
+  TeacherReportsRoute: typeof TeacherReportsRoute
   TeacherResultsRoute: typeof TeacherResultsRoute
   TeacherStudentsRoute: typeof TeacherStudentsRoute
   TeacherIndexRoute: typeof TeacherIndexRoute
@@ -600,6 +620,7 @@ interface TeacherRouteChildren {
 const TeacherRouteChildren: TeacherRouteChildren = {
   TeacherExperimentsRoute: TeacherExperimentsRoute,
   TeacherQuestionsRoute: TeacherQuestionsRoute,
+  TeacherReportsRoute: TeacherReportsRoute,
   TeacherResultsRoute: TeacherResultsRoute,
   TeacherStudentsRoute: TeacherStudentsRoute,
   TeacherIndexRoute: TeacherIndexRoute,
