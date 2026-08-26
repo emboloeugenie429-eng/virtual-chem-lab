@@ -32,6 +32,7 @@ import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as TeacherExperimentsRouteImport } from './routes/teacher.experiments'
 import { Route as TeacherQuestionsRouteImport } from './routes/teacher.questions'
+import { Route as TeacherResultsRouteImport } from './routes/teacher.results'
 import { Route as TeacherStudentsRouteImport } from './routes/teacher.students'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
 import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
@@ -151,6 +152,11 @@ const TeacherQuestionsRoute = TeacherQuestionsRouteImport.update({
   path: '/questions',
   getParentRoute: () => TeacherRoute,
 } as any)
+const TeacherResultsRoute = TeacherResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const TeacherStudentsRoute = TeacherStudentsRouteImport.update({
   id: '/students',
   path: '/students',
@@ -189,6 +195,7 @@ export interface FileRoutesByFullPath {
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
   '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/results': typeof TeacherResultsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
   '/teacher/': typeof TeacherIndexRoute
@@ -215,6 +222,7 @@ export interface FileRoutesByTo {
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
   '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/results': typeof TeacherResultsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app': typeof AppIndexRoute
   '/teacher': typeof TeacherIndexRoute
@@ -244,6 +252,7 @@ export interface FileRoutesById {
   '/app/settings': typeof AppSettingsRoute
   '/teacher/experiments': typeof TeacherExperimentsRoute
   '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/results': typeof TeacherResultsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
   '/teacher/': typeof TeacherIndexRoute
@@ -274,6 +283,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/teacher/experiments'
     | '/teacher/questions'
+    | '/teacher/results'
     | '/teacher/students'
     | '/app/'
     | '/teacher/'
@@ -300,6 +310,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/teacher/experiments'
     | '/teacher/questions'
+    | '/teacher/results'
     | '/teacher/students'
     | '/app'
     | '/teacher'
@@ -328,6 +339,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/teacher/experiments'
     | '/teacher/questions'
+    | '/teacher/results'
     | '/teacher/students'
     | '/app/'
     | '/teacher/'
@@ -508,6 +520,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeacherQuestionsRouteImport
       parentRoute: typeof TeacherRoute
     }
+    '/teacher/results': {
+      id: '/teacher/results'
+      path: '/results'
+      fullPath: '/teacher/results'
+      preLoaderRoute: typeof TeacherResultsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/teacher/students': {
       id: '/teacher/students'
       path: '/students'
@@ -573,6 +592,7 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 interface TeacherRouteChildren {
   TeacherExperimentsRoute: typeof TeacherExperimentsRoute
   TeacherQuestionsRoute: typeof TeacherQuestionsRoute
+  TeacherResultsRoute: typeof TeacherResultsRoute
   TeacherStudentsRoute: typeof TeacherStudentsRoute
   TeacherIndexRoute: typeof TeacherIndexRoute
 }
@@ -580,6 +600,7 @@ interface TeacherRouteChildren {
 const TeacherRouteChildren: TeacherRouteChildren = {
   TeacherExperimentsRoute: TeacherExperimentsRoute,
   TeacherQuestionsRoute: TeacherQuestionsRoute,
+  TeacherResultsRoute: TeacherResultsRoute,
   TeacherStudentsRoute: TeacherStudentsRoute,
   TeacherIndexRoute: TeacherIndexRoute,
 }
