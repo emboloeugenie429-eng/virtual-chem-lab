@@ -29,6 +29,7 @@ import { Route as AppReportsRouteImport } from './routes/app.reports'
 import { Route as AppResultsRouteImport } from './routes/app.results'
 import { Route as AppSafetyRouteImport } from './routes/app.safety'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
 import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
 
@@ -132,6 +133,11 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
+const TeacherIndexRoute = TeacherIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const AppExperimentsIndexRoute = AppExperimentsIndexRouteImport.update({
   id: '/experiments/',
   path: '/experiments/',
@@ -150,7 +156,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
-  '/teacher': typeof TeacherRoute
+  '/teacher': typeof TeacherRouteWithChildren
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/history': typeof AppHistoryRoute
@@ -164,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/': typeof AppIndexRoute
+  '/teacher/': typeof TeacherIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
 }
@@ -173,7 +180,6 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
-  '/teacher': typeof TeacherRoute
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/history': typeof AppHistoryRoute
@@ -187,6 +193,7 @@ export interface FileRoutesByTo {
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
   '/app': typeof AppIndexRoute
+  '/teacher': typeof TeacherIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments': typeof AppExperimentsIndexRoute
 }
@@ -198,7 +205,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
-  '/teacher': typeof TeacherRoute
+  '/teacher': typeof TeacherRouteWithChildren
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/history': typeof AppHistoryRoute
@@ -212,6 +219,7 @@ export interface FileRoutesById {
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/': typeof AppIndexRoute
+  '/teacher/': typeof TeacherIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
 }
@@ -238,6 +246,7 @@ export interface FileRouteTypes {
     | '/app/safety'
     | '/app/settings'
     | '/app/'
+    | '/teacher/'
     | '/app/experiments/$id'
     | '/app/experiments/'
   fileRoutesByTo: FileRoutesByTo
@@ -247,7 +256,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/logout'
     | '/register'
-    | '/teacher'
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/history'
@@ -261,6 +269,7 @@ export interface FileRouteTypes {
     | '/app/safety'
     | '/app/settings'
     | '/app'
+    | '/teacher'
     | '/app/experiments/$id'
     | '/app/experiments'
   id:
@@ -285,6 +294,7 @@ export interface FileRouteTypes {
     | '/app/safety'
     | '/app/settings'
     | '/app/'
+    | '/teacher/'
     | '/app/experiments/$id'
     | '/app/experiments/'
   fileRoutesById: FileRoutesById
@@ -296,7 +306,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   LogoutRoute: typeof LogoutRoute
   RegisterRoute: typeof RegisterRoute
-  TeacherRoute: typeof TeacherRoute
+  TeacherRoute: typeof TeacherRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -441,6 +451,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/teacher/': {
+      id: '/teacher/'
+      path: '/'
+      fullPath: '/teacher/'
+      preLoaderRoute: typeof TeacherIndexRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/app/experiments/': {
       id: '/app/experiments/'
       path: '/experiments'
@@ -496,6 +513,17 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface TeacherRouteChildren {
+  TeacherIndexRoute: typeof TeacherIndexRoute
+}
+
+const TeacherRouteChildren: TeacherRouteChildren = {
+  TeacherIndexRoute: TeacherIndexRoute,
+}
+
+const TeacherRouteWithChildren =
+  TeacherRoute._addFileChildren(TeacherRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
@@ -503,7 +531,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   LogoutRoute: LogoutRoute,
   RegisterRoute: RegisterRoute,
-  TeacherRoute: TeacherRoute,
+  TeacherRoute: TeacherRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
