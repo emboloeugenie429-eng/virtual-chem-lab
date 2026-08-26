@@ -15,6 +15,7 @@ import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LogoutRouteImport } from './routes/logout'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as TeacherRouteImport } from './routes/teacher'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppApparatusRouteImport } from './routes/app.apparatus'
 import { Route as AppChemicalsRouteImport } from './routes/app.chemicals'
@@ -28,6 +29,13 @@ import { Route as AppReportsRouteImport } from './routes/app.reports'
 import { Route as AppResultsRouteImport } from './routes/app.results'
 import { Route as AppSafetyRouteImport } from './routes/app.safety'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as TeacherIndexRouteImport } from './routes/teacher.index'
+import { Route as TeacherExperimentsRouteImport } from './routes/teacher.experiments'
+import { Route as TeacherQuestionsRouteImport } from './routes/teacher.questions'
+import { Route as TeacherReportsRouteImport } from './routes/teacher.reports'
+import { Route as TeacherResultsRouteImport } from './routes/teacher.results'
+import { Route as TeacherSettingsRouteImport } from './routes/teacher.settings'
+import { Route as TeacherStudentsRouteImport } from './routes/teacher.students'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
 import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
 
@@ -59,6 +67,11 @@ const LogoutRoute = LogoutRouteImport.update({
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TeacherRoute = TeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -126,6 +139,41 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
+const TeacherIndexRoute = TeacherIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherExperimentsRoute = TeacherExperimentsRouteImport.update({
+  id: '/experiments',
+  path: '/experiments',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherQuestionsRoute = TeacherQuestionsRouteImport.update({
+  id: '/questions',
+  path: '/questions',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherReportsRoute = TeacherReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherResultsRoute = TeacherResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherSettingsRoute = TeacherSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => TeacherRoute,
+} as any)
+const TeacherStudentsRoute = TeacherStudentsRouteImport.update({
+  id: '/students',
+  path: '/students',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const AppExperimentsIndexRoute = AppExperimentsIndexRouteImport.update({
   id: '/experiments/',
   path: '/experiments/',
@@ -144,6 +192,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
+  '/teacher': typeof TeacherRouteWithChildren
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/history': typeof AppHistoryRoute
@@ -156,7 +205,14 @@ export interface FileRoutesByFullPath {
   '/app/results': typeof AppResultsRoute
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
+  '/teacher/experiments': typeof TeacherExperimentsRoute
+  '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/reports': typeof TeacherReportsRoute
+  '/teacher/results': typeof TeacherResultsRoute
+  '/teacher/settings': typeof TeacherSettingsRoute
+  '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
+  '/teacher/': typeof TeacherIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
 }
@@ -178,7 +234,14 @@ export interface FileRoutesByTo {
   '/app/results': typeof AppResultsRoute
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
+  '/teacher/experiments': typeof TeacherExperimentsRoute
+  '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/reports': typeof TeacherReportsRoute
+  '/teacher/results': typeof TeacherResultsRoute
+  '/teacher/settings': typeof TeacherSettingsRoute
+  '/teacher/students': typeof TeacherStudentsRoute
   '/app': typeof AppIndexRoute
+  '/teacher': typeof TeacherIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments': typeof AppExperimentsIndexRoute
 }
@@ -190,6 +253,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/logout': typeof LogoutRoute
   '/register': typeof RegisterRoute
+  '/teacher': typeof TeacherRouteWithChildren
   '/app/apparatus': typeof AppApparatusRoute
   '/app/chemicals': typeof AppChemicalsRoute
   '/app/history': typeof AppHistoryRoute
@@ -202,7 +266,14 @@ export interface FileRoutesById {
   '/app/results': typeof AppResultsRoute
   '/app/safety': typeof AppSafetyRoute
   '/app/settings': typeof AppSettingsRoute
+  '/teacher/experiments': typeof TeacherExperimentsRoute
+  '/teacher/questions': typeof TeacherQuestionsRoute
+  '/teacher/reports': typeof TeacherReportsRoute
+  '/teacher/results': typeof TeacherResultsRoute
+  '/teacher/settings': typeof TeacherSettingsRoute
+  '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
+  '/teacher/': typeof TeacherIndexRoute
   '/app/experiments/$id': typeof AppExperimentsIdRoute
   '/app/experiments/': typeof AppExperimentsIndexRoute
 }
@@ -215,6 +286,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/logout'
     | '/register'
+    | '/teacher'
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/history'
@@ -227,7 +299,14 @@ export interface FileRouteTypes {
     | '/app/results'
     | '/app/safety'
     | '/app/settings'
+    | '/teacher/experiments'
+    | '/teacher/questions'
+    | '/teacher/reports'
+    | '/teacher/results'
+    | '/teacher/settings'
+    | '/teacher/students'
     | '/app/'
+    | '/teacher/'
     | '/app/experiments/$id'
     | '/app/experiments/'
   fileRoutesByTo: FileRoutesByTo
@@ -249,7 +328,14 @@ export interface FileRouteTypes {
     | '/app/results'
     | '/app/safety'
     | '/app/settings'
+    | '/teacher/experiments'
+    | '/teacher/questions'
+    | '/teacher/reports'
+    | '/teacher/results'
+    | '/teacher/settings'
+    | '/teacher/students'
     | '/app'
+    | '/teacher'
     | '/app/experiments/$id'
     | '/app/experiments'
   id:
@@ -260,6 +346,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/logout'
     | '/register'
+    | '/teacher'
     | '/app/apparatus'
     | '/app/chemicals'
     | '/app/history'
@@ -272,7 +359,14 @@ export interface FileRouteTypes {
     | '/app/results'
     | '/app/safety'
     | '/app/settings'
+    | '/teacher/experiments'
+    | '/teacher/questions'
+    | '/teacher/reports'
+    | '/teacher/results'
+    | '/teacher/settings'
+    | '/teacher/students'
     | '/app/'
+    | '/teacher/'
     | '/app/experiments/$id'
     | '/app/experiments/'
   fileRoutesById: FileRoutesById
@@ -284,6 +378,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   LogoutRoute: typeof LogoutRoute
   RegisterRoute: typeof RegisterRoute
+  TeacherRoute: typeof TeacherRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -328,6 +423,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/teacher': {
+      id: '/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof TeacherRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/': {
@@ -421,6 +523,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/teacher/': {
+      id: '/teacher/'
+      path: '/'
+      fullPath: '/teacher/'
+      preLoaderRoute: typeof TeacherIndexRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/experiments': {
+      id: '/teacher/experiments'
+      path: '/experiments'
+      fullPath: '/teacher/experiments'
+      preLoaderRoute: typeof TeacherExperimentsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/questions': {
+      id: '/teacher/questions'
+      path: '/questions'
+      fullPath: '/teacher/questions'
+      preLoaderRoute: typeof TeacherQuestionsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/reports': {
+      id: '/teacher/reports'
+      path: '/reports'
+      fullPath: '/teacher/reports'
+      preLoaderRoute: typeof TeacherReportsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/results': {
+      id: '/teacher/results'
+      path: '/results'
+      fullPath: '/teacher/results'
+      preLoaderRoute: typeof TeacherResultsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/settings': {
+      id: '/teacher/settings'
+      path: '/settings'
+      fullPath: '/teacher/settings'
+      preLoaderRoute: typeof TeacherSettingsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
+    '/teacher/students': {
+      id: '/teacher/students'
+      path: '/students'
+      fullPath: '/teacher/students'
+      preLoaderRoute: typeof TeacherStudentsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/app/experiments/': {
       id: '/app/experiments/'
       path: '/experiments'
@@ -476,6 +627,29 @@ const AppRouteChildren: AppRouteChildren = {
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
+interface TeacherRouteChildren {
+  TeacherExperimentsRoute: typeof TeacherExperimentsRoute
+  TeacherQuestionsRoute: typeof TeacherQuestionsRoute
+  TeacherReportsRoute: typeof TeacherReportsRoute
+  TeacherResultsRoute: typeof TeacherResultsRoute
+  TeacherSettingsRoute: typeof TeacherSettingsRoute
+  TeacherStudentsRoute: typeof TeacherStudentsRoute
+  TeacherIndexRoute: typeof TeacherIndexRoute
+}
+
+const TeacherRouteChildren: TeacherRouteChildren = {
+  TeacherExperimentsRoute: TeacherExperimentsRoute,
+  TeacherQuestionsRoute: TeacherQuestionsRoute,
+  TeacherReportsRoute: TeacherReportsRoute,
+  TeacherResultsRoute: TeacherResultsRoute,
+  TeacherSettingsRoute: TeacherSettingsRoute,
+  TeacherStudentsRoute: TeacherStudentsRoute,
+  TeacherIndexRoute: TeacherIndexRoute,
+}
+
+const TeacherRouteWithChildren =
+  TeacherRoute._addFileChildren(TeacherRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
@@ -483,7 +657,18 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   LogoutRoute: LogoutRoute,
   RegisterRoute: RegisterRoute,
+  TeacherRoute: TeacherRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
