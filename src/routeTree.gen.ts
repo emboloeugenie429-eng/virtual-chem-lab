@@ -34,6 +34,7 @@ import { Route as TeacherExperimentsRouteImport } from './routes/teacher.experim
 import { Route as TeacherQuestionsRouteImport } from './routes/teacher.questions'
 import { Route as TeacherReportsRouteImport } from './routes/teacher.reports'
 import { Route as TeacherResultsRouteImport } from './routes/teacher.results'
+import { Route as TeacherSettingsRouteImport } from './routes/teacher.settings'
 import { Route as TeacherStudentsRouteImport } from './routes/teacher.students'
 import { Route as AppExperimentsIndexRouteImport } from './routes/app.experiments.index'
 import { Route as AppExperimentsIdRouteImport } from './routes/app.experiments.$id'
@@ -163,6 +164,11 @@ const TeacherResultsRoute = TeacherResultsRouteImport.update({
   path: '/results',
   getParentRoute: () => TeacherRoute,
 } as any)
+const TeacherSettingsRoute = TeacherSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => TeacherRoute,
+} as any)
 const TeacherStudentsRoute = TeacherStudentsRouteImport.update({
   id: '/students',
   path: '/students',
@@ -203,6 +209,7 @@ export interface FileRoutesByFullPath {
   '/teacher/questions': typeof TeacherQuestionsRoute
   '/teacher/reports': typeof TeacherReportsRoute
   '/teacher/results': typeof TeacherResultsRoute
+  '/teacher/settings': typeof TeacherSettingsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
   '/teacher/': typeof TeacherIndexRoute
@@ -231,6 +238,7 @@ export interface FileRoutesByTo {
   '/teacher/questions': typeof TeacherQuestionsRoute
   '/teacher/reports': typeof TeacherReportsRoute
   '/teacher/results': typeof TeacherResultsRoute
+  '/teacher/settings': typeof TeacherSettingsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app': typeof AppIndexRoute
   '/teacher': typeof TeacherIndexRoute
@@ -262,6 +270,7 @@ export interface FileRoutesById {
   '/teacher/questions': typeof TeacherQuestionsRoute
   '/teacher/reports': typeof TeacherReportsRoute
   '/teacher/results': typeof TeacherResultsRoute
+  '/teacher/settings': typeof TeacherSettingsRoute
   '/teacher/students': typeof TeacherStudentsRoute
   '/app/': typeof AppIndexRoute
   '/teacher/': typeof TeacherIndexRoute
@@ -294,6 +303,7 @@ export interface FileRouteTypes {
     | '/teacher/questions'
     | '/teacher/reports'
     | '/teacher/results'
+    | '/teacher/settings'
     | '/teacher/students'
     | '/app/'
     | '/teacher/'
@@ -322,6 +332,7 @@ export interface FileRouteTypes {
     | '/teacher/questions'
     | '/teacher/reports'
     | '/teacher/results'
+    | '/teacher/settings'
     | '/teacher/students'
     | '/app'
     | '/teacher'
@@ -352,6 +363,7 @@ export interface FileRouteTypes {
     | '/teacher/questions'
     | '/teacher/reports'
     | '/teacher/results'
+    | '/teacher/settings'
     | '/teacher/students'
     | '/app/'
     | '/teacher/'
@@ -546,6 +558,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeacherResultsRouteImport
       parentRoute: typeof TeacherRoute
     }
+    '/teacher/settings': {
+      id: '/teacher/settings'
+      path: '/settings'
+      fullPath: '/teacher/settings'
+      preLoaderRoute: typeof TeacherSettingsRouteImport
+      parentRoute: typeof TeacherRoute
+    }
     '/teacher/students': {
       id: '/teacher/students'
       path: '/students'
@@ -613,6 +632,7 @@ interface TeacherRouteChildren {
   TeacherQuestionsRoute: typeof TeacherQuestionsRoute
   TeacherReportsRoute: typeof TeacherReportsRoute
   TeacherResultsRoute: typeof TeacherResultsRoute
+  TeacherSettingsRoute: typeof TeacherSettingsRoute
   TeacherStudentsRoute: typeof TeacherStudentsRoute
   TeacherIndexRoute: typeof TeacherIndexRoute
 }
@@ -622,6 +642,7 @@ const TeacherRouteChildren: TeacherRouteChildren = {
   TeacherQuestionsRoute: TeacherQuestionsRoute,
   TeacherReportsRoute: TeacherReportsRoute,
   TeacherResultsRoute: TeacherResultsRoute,
+  TeacherSettingsRoute: TeacherSettingsRoute,
   TeacherStudentsRoute: TeacherStudentsRoute,
   TeacherIndexRoute: TeacherIndexRoute,
 }
